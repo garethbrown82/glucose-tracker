@@ -12,3 +12,8 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `npx cdk deploy`  deploy this stack to your default AWS account/region
 * `npx cdk diff`    compare deployed stack with current state
 * `npx cdk synth`   emits the synthesized CloudFormation template
+
+## Local Invoke
+The Lambda functions can be invoked locally using SAM CLI as follows:
+`cdk synth --no-staging`
+`sam local invoke FileUploadFunction --no-event -t ./cdk.out/GlucoseTrackerStack.template.json`
