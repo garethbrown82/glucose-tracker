@@ -24,5 +24,6 @@ export class GlucoseTrackerStack extends cdk.Stack {
       partitionKey: { name: 'timestamp', type: dynamodb.AttributeType.STRING },
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     })
+    insulinTrackTable.grantReadData(insulinTrackFunction);
   }
 }
