@@ -18,7 +18,10 @@ export class GlucoseTrackerStack extends cdk.Stack {
     const insulinTrackApiGateway = new apiGateway.LambdaRestApi(this, 'InsulinTrackApiGateway', {
       handler: insulinTrackFunction,
       restApiName: 'InsulinTrackRestApi',
+      proxy: false,
     });
+    const injections = insulinTrackApiGateway.root.addResource('injections');
+    injections.addMethod('POST');
 
     const insulinTrackTable = new dynamodb.TableV2(this, 'InsulinTrackTable', {
       partitionKey: { name: 'timestamp', type: dynamodb.AttributeType.STRING },
