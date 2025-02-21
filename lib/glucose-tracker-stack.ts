@@ -17,7 +17,7 @@ export class GlucoseTrackerStack extends cdk.Stack {
     const insulinTrackFunction = new lambda.Function(this, 'InsulinTrackFunction', {
       runtime: lambda.Runtime.NODEJS_LATEST,
       handler: 'index.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda-handler')),
+      code: lambda.Code.fromAsset(path.join(__dirname, 'lambdas', 'insulin-track')),
       environment: {
         INSULIN_TABLE: insulinTrackTable.tableName,
       }

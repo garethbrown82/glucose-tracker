@@ -1,14 +1,22 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
+export interface InsulinEventRequestBody {
+  type: 'Lantus' | 'Novorapid';
+  units: number;
+}
 
-export const handler = async (event: any = {}) => {
+export interface InsulinEvent {
+  body: string;
+}
+
+export const handler = async (event: InsulinEvent) => {
   const client = new DynamoDBClient({});
   const dynamoDB = DynamoDBDocumentClient.from(client);
 
   const dateNow = new Date();
   const timeNow = dateNow.getTime().toString();
-  const requestBody = JSON.parse(event.body);
+  const requestBody: InsulinEventRequestBody = JSON.parse(event.body);
 
   await dynamoDB.send(
     new PutCommand({
