@@ -1,8 +1,8 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
 
-exports.handler = async (event) => {
+export const handler = async (event: any = {}) => {
   const client = new DynamoDBClient({});
   const dynamoDB = DynamoDBDocumentClient.from(client);
 
