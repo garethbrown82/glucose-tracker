@@ -10,13 +10,20 @@ export interface InsulinEvent {
   body: string;
 }
 
-export const handler = async (event: InsulinEvent) => {
-  const client = new DynamoDBClient({});
-  const dynamoDB = DynamoDBDocumentClient.from(client);
+const client = new DynamoDBClient({});
+const dynamoDB = DynamoDBDocumentClient.from(client);
 
+export const handler = async (event: InsulinEvent) => {
   const dateNow = new Date();
   const timeNow = dateNow.getTime().toString();
   const requestBody: InsulinEventRequestBody = JSON.parse(event.body);
+
+  if (!isBodyValid(requestBody)) {
+    return {
+      body: JSON.stringify({ message: 'Request body is malformed' }),
+      statusCode: 400,
+    }
+  }
 
   await dynamoDB.send(
     new PutCommand({
@@ -34,3 +41,7 @@ export const handler = async (event: InsulinEvent) => {
     statusCode: 200,
   };
 };
+
+const isBodyValid = (body: InsulinEventRequestBody) => (
+  Object.keys(body).every(key => ['type', 'units'].includes(key))
+)
