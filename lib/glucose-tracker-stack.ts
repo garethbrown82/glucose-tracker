@@ -50,5 +50,6 @@ export class GlucoseTrackerStack extends cdk.Stack {
     });
 
     glucoseReadingsBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(glucoseTrackFunction));
+    glucoseReadingsBucket.grantRead(glucoseTrackFunction);
   }
 }

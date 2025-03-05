@@ -1,0 +1,38 @@
+{
+  "Records": [
+      {
+          "eventVersion": "2.1",
+          "eventSource": "aws:s3",
+          "awsRegion": "eu-west-1",
+          "eventTime": "2025-03-03T16:06:14.043Z",
+          "eventName": "ObjectCreated:Put",
+          "userIdentity": {
+              "principalId": "AWS:AIDATSWNSZHSZJIJC6LN7"
+          },
+          "requestParameters": {
+              "sourceIPAddress": "148.69.221.17"
+          },
+          "responseElements": {
+              "x-amz-request-id": "56SJQ4NZWEGHQB3M",
+              "x-amz-id-2": "bB/zTJjipTXlWV8KKhuEbhzQgrdvXJuqaSBsMauUEUqAOpoC4K8MUeDGsQq0nwF/U4UT2YnbUN3/EFFfbltYZKVpNwa47O9g"
+          },
+          "s3": {
+              "s3SchemaVersion": "1.0",
+              "configurationId": "NjQ4Mzk3NjItMmI3ZC00MGNlLWI0NmEtM2Y3ZDY4ZjRkZGRl",
+              "bucket": {
+                  "name": "glucosetrackerstack-glucosereadingbucketded70ea4-fpq4dtlx5fjj",
+                  "ownerIdentity": {
+                      "principalId": "A18VUZMUW0XX1W"
+                  },
+                  "arn": "arn:aws:s3:::glucosetrackerstack-glucosereadingbucketded70ea4-fpq4dtlx5fjj"
+              },
+              "object": {
+                  "key": "GarethBrown_glucose_3-3-2025.csv",
+                  "size": 3700885,
+                  "eTag": "b2f92c94fffc04a4a0c6660ff0b02e14",
+                  "sequencer": "0067C5D375E73CC97F"
+              }
+          }
+      }
+  ]
+}
