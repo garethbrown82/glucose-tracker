@@ -21,7 +21,7 @@ export class GlucoseTrackerStack extends cdk.Stack {
     const insulinTrackFunction = new lambda.Function(this, 'InsulinTrackFunction', {
       runtime: lambda.Runtime.NODEJS_LATEST,
       handler: 'index.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'lambdas', 'insulin-track')),
+      code: lambda.Code.fromAsset(path.join(__dirname, 'dist', 'insulin-track')),
       environment: {
         INSULIN_TABLE: insulinTrackTable.tableName,
       }
@@ -46,7 +46,8 @@ export class GlucoseTrackerStack extends cdk.Stack {
     const glucoseTrackFunction = new lambda.Function(this, 'GlucoseTrackFunction', {
       runtime: lambda.Runtime.NODEJS_LATEST,
       handler: 'index.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, 'lambdas', 'glucose-track')),
+      code: lambda.Code.fromAsset(path.join(__dirname, 'dist', 'glucose-track')),
+      timeout: cdk.Duration.seconds(20),
     });
 
     glucoseReadingsBucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(glucoseTrackFunction));
